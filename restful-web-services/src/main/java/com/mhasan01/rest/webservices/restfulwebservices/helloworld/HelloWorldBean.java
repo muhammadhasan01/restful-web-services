@@ -1,4 +1,4 @@
-package com.mhasan01.rest.webservices.restfulwebservices;
+package com.mhasan01.rest.webservices.restfulwebservices.helloworld;
 
 import lombok.Data;
 
