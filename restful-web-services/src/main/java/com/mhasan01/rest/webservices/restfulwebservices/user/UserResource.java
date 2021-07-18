@@ -10,8 +10,12 @@ import java.util.List;
 
 @RestController
 public class UserResource {
-    @Autowired
     UserDaoService service;
+
+    @Autowired
+    UserResource(UserDaoService service) {
+        this.service = service;
+    }
 
     @GetMapping("/users")
     public List<User> retrieveAllUsers() {
