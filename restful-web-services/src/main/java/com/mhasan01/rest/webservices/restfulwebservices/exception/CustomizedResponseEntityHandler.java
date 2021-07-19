@@ -26,14 +26,14 @@ public class CustomizedResponseEntityHandler extends ResponseEntityExceptionHand
     @ExceptionHandler(UserNotFoundException.class)
     public final ResponseEntity<Object> handleUserNotFoundException(UserNotFoundException ex, WebRequest request) {
         ExceptionResponse exceptionResponse =
-                new ExceptionResponse(new Date(), "Validation Failed", request.getDescription(false));
+                new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
         return new ResponseEntity(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
         ExceptionResponse exceptionResponse =
-                new ExceptionResponse(new Date(), ex.getMessage(), ex.getBindingResult().toString());
+                new ExceptionResponse(new Date(), "Validation Failed", ex.getBindingResult().toString());
         return new ResponseEntity(exceptionResponse, HttpStatus.BAD_REQUEST);
     }
 }
